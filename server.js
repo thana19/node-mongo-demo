@@ -8,7 +8,6 @@ const products = [{}]
 
 app.use(express.json())
 
-// mongoose.connect('mongodb://usr:52435243@157.230.254.37:2888/test', { useNewUrlParser: true, useUnifiedTopology: true })
 // mongoose.connect('mongodb://usr:secure@127.0.0.1:27017/test', { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connect('mongodb://usr:secure@mongo/test', { useNewUrlParser: true, useUnifiedTopology: true })
 
