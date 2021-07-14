@@ -22,21 +22,33 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/:id', async (req, res) => {
   const { id } = req.params
-  const product = await Product.findById(id)
-  res.json(product)
+  try {
+    const product = await Product.findById(id)
+    res.json(product)
+  } catch (error) {
+    res.status(400).json(error)
+  }
 })
 
 app.get('/products/name/:pname', async (req, res) => {
   const { pname } = req.params
-  const product = await Product.findOne({ name: pname })
-  res.json(product)
+  try {
+    const product = await Product.findOne({ name: pname })
+    res.json(product)
+  } catch (error) {
+    res.status(400).json(error)
+  }  
 })
 
 app.post('/products', async (req, res) => {
   const payload = req.body
-  const product = new Product(payload)
-  await product.save()
-  res.status(201).end()
+  try {
+    const product = new Product(payload)
+    await product.save()
+    res.status(201).end()
+  } catch (error) {
+    res.status(400).json(error)
+  }    
 })
 
 app.put('/products/:id', async (req, res) => {
